@@ -49,7 +49,9 @@ jobs:
       #   run: |
       #     git checkout -b ${{ inputs.branch }}
       #     git push origin ${{ inputs.branch }}
-
+      - name: Make changes to pull request
+        run: date +%s > report.txt
+  
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7    
         with:
