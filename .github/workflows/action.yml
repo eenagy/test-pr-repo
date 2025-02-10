@@ -31,7 +31,7 @@ jobs:
   #         ls -al ./.github/workflows
 
   check-and-create-pr:
-    uses: ./.github/workflows/pr-create/action.yml
+    uses: ./.github/workflows/pr-create.yml
     with:
       # branch: ${{inputs.env.pr_branch_name}}
       # package: ${{inputs.env.package}}
