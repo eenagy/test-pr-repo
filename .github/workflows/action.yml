@@ -2,8 +2,8 @@ name: Conditional PR Creator
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0/15 * * * * # Every 15 minutes
+  # schedule:
+  #   - cron: 0/15 * * * * # Every 15 minutes
 
 permissions:
   contents: write # Grants permission to push changes
