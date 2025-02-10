@@ -29,5 +29,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: ${{steps.env.outputs.pr_branch_name}}
-          sha: '${{ github.event.pull_request.head.sha }}'
+          branch: '${{steps.env.outputs.pr_branch_name}}'
