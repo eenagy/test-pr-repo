@@ -22,11 +22,14 @@ jobs:
           else
             echo "branch_exists=true" >> $GITHUB_OUTPUT
           fi
-
-      - name: Take action based on branch existence
+      - name: Configure Git
         if: steps.env.outputs.branch_exists == 'false'
-        uses: peterjgrainger/action-create-branch@v2.2.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          branch: '${{steps.env.outputs.pr_branch_name}}'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create new branch
+        if: steps.env.outputs.branch_exists == 'false'
+        run: |
+          git checkout -b ${{ github.env.inputs.branch_name }}
+          git push origin ${{ github.env.inputs.branch_name }}
