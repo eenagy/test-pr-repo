@@ -3,7 +3,7 @@ name: create-release-branch
 on:
   workflow_call:
     inputs:
-      branch_name:
+      branch:
         required: true
         type: string
       platform:
