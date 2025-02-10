@@ -38,17 +38,17 @@ jobs:
           else
             echo "branch_exists=true" >> $GITHUB_OUTPUT
           fi
-      - name: Configure Git
-        if: steps.env.outputs.branch_exists == 'false'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: Configure Git
+      #   if: steps.env.outputs.branch_exists == 'false'
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create new branch
-        if: steps.env.outputs.branch_exists == 'false'
-        run: |
-          git checkout -b ${{ inputs.branch }}
-          git push origin ${{ inputs.branch }}
+      # - name: Create new branch
+      #   if: steps.env.outputs.branch_exists == 'false'
+      #   run: |
+      #     git checkout -b ${{ inputs.branch }}
+      #     git push origin ${{ inputs.branch }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7    
