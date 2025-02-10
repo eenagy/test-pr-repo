@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: 0/15 * * * * # Every 15 minutes
 
+permissions:
+  contents: write  # Grants permission to push changes
+  
 jobs:
   check-and-create-pr:
     runs-on: ubuntu-latest
