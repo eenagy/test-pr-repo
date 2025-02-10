@@ -27,6 +27,8 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "platform=$PLATFORM" >> $GITHUB_OUTPUT
           echo "arch=$ARCH" >> $GITHUB_OUTPUT
+          ls -al 
+          ls -al ./.github/workflows
 
       - name: 'check release'
         uses: ./.github/workflows/pr-create/action.yml
