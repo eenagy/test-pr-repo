@@ -6,36 +6,40 @@ on:
     - cron: 0/15 * * * * # Every 15 minutes
 
 permissions:
-  contents: write  # Grants permission to push changes
+  contents: write # Grants permission to push changes
 
 jobs:
+  # check-and-create-pr:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+
+  #     - name: Check if branch exists
+  #       id: env
+  #       run: |
+  #         PACKAGE_NAME="example"
+  #         VERSION="1.0.0"
+  #         PLATFORM="bookworm"
+  #         ARCH="amd64"
+  #         BRANCH_NAME="upcoming/$PLATFORM/$ARCH/$PACKAGE_NAME/$VERSION"
+  #         echo "pr_branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+  #         echo "package=$PACKAGE" >> $GITHUB_OUTPUT
+  #         echo "version=$VERSION" >> $GITHUB_OUTPUT
+  #         echo "platform=$PLATFORM" >> $GITHUB_OUTPUT
+  #         echo "arch=$ARCH" >> $GITHUB_OUTPUT
+  #         ls -al
+  #         ls -al ./.github/workflows
+
   check-and-create-pr:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check if branch exists
-        id: env
-        run: |
-          PACKAGE_NAME="example"
-          VERSION="1.0.0"
-          PLATFORM="bookworm"
-          ARCH="amd64"
-          BRANCH_NAME="upcoming/$PLATFORM/$ARCH/$PACKAGE_NAME/$VERSION"
-          echo "pr_branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          echo "package=$PACKAGE" >> $GITHUB_OUTPUT
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "platform=$PLATFORM" >> $GITHUB_OUTPUT
-          echo "arch=$ARCH" >> $GITHUB_OUTPUT
-          ls -al 
-          ls -al ./.github/workflows
-
-      - name: 'check release'
-        uses: ./.github/workflows/pr-create/action.yml
-        with:
-          branch: ${{inputs.env.pr_branch_name}}
-          package: ${{inputs.env.package}}    
-          platform: ${{inputs.env.platform}}    
-          version: ${{inputs.env.version}}    
-          arch: ${{inputs.env.arch}}    
-   
+    uses: ./.github/workflows/pr-create/action.yml
+    with:
+      # branch: ${{inputs.env.pr_branch_name}}
+      # package: ${{inputs.env.package}}
+      # platform: ${{inputs.env.platform}}
+      # version: ${{inputs.env.version}}
+      # arch: ${{inputs.env.arch}}
+      branch: "upcoming/bookworm/amd64/example/1.0.0"
+      package: "example"
+      platform: "bookworm"
+      version: "version"
+      arch: "arch"
