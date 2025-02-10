@@ -58,7 +58,7 @@ jobs:
           branch: ${{ inputs.branch_name }}
           title: '${{ inputs.branch_name }}'
           body: |
-           New Release - ${{ date }}
+           New Release
 
            Package: ${{ inputs.package }}
            Version: ${{ inputs.version }}
