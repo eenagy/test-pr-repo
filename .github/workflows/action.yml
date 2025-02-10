@@ -29,7 +29,7 @@ jobs:
           echo "arch=$ARCH" >> $GITHUB_OUTPUT
 
       - name: 'check release'
-        uses: ./.github/workflows/pr-create.yml
+        uses: ./.github/workflows/pr-create/action.yml
         with:
           branch: ${{inputs.env.pr_branch_name}}
           package: ${{inputs.env.package}}    
