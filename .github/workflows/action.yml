@@ -1,0 +1,29 @@
+name: Conditional PR Creator
+
+on:
+  schedule:
+    - cron: 0/15 * * * * # Every 15 minutes
+
+jobs:
+  check-and-create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if branch exists
+        id: env
+        run: |
+          BRANCH_NAME="some-branch-name"
+          echo "pr_branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          BRANCH_EXISTS=$(git ls-remote --heads origin $BRANCH_NAME)
+          if [ -z "$BRANCH_EXISTS" ]; then
+            echo "branch_exists=false" >> $GITHUB_OUTPUT
+          else
+            echo "branch_exists=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Take action based on branch existence
+        if: steps.env.outputs.branch_exists == 'false'
+        run: |
+           git checkout -b ${{steps.env.outputs.pr_branch_name}}
+           git push origin ${{steps.env.outputs.pr_branch_name}}
