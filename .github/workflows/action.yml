@@ -31,5 +31,5 @@ jobs:
       - name: Create new branch
         if: steps.env.outputs.branch_exists == 'false'
         run: |
-          git checkout -b ${{ github.env.inputs.branch_name }}
-          git push origin ${{ github.env.inputs.branch_name }}
+          git checkout -b ${{ steps.env.inputs.branch_name }}
+          git push origin ${{ steps.env.inputs.branch_name }}
